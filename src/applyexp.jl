@@ -26,6 +26,7 @@ function applyexp(H, tau::Number, x0; kwargs...)
   tol = get(kwargs, :tol, 1E-12)
   outputlevel = get(kwargs, :outputlevel, 0)
   beta_tol = get(kwargs, :normcutoff, 1E-7)
+  shift = get(kwargs, :shift, 0)
 
   # Initialize Lanczos vectors
   v1 = copy(x0)
@@ -51,7 +52,7 @@ function applyexp(H, tau::Number, x0; kwargs...)
     avnorm = norm(w)
     alpha = dot(w, v1)
 
-    bigTmat[iter, iter] = alpha
+    bigTmat[iter, iter] = alpha - shift
 
     w -= alpha * v1
     if iter > 1

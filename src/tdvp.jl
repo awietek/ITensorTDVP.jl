@@ -21,6 +21,7 @@ function applyexp_solver(; kwargs...)
     solver_kwargs = (;
       maxiter=get(kwargs, :solver_krylovdim, 30),
       outputlevel=get(kwargs, :solver_outputlevel, 0),
+      shift=get(kwargs, :shift, 0)
     )
     #applyexp tol is absolute, compute from tol_per_unit_time:
     tol = abs(t) * tol_per_unit_time
